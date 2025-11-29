@@ -13,6 +13,7 @@
             <p>To join our email list, enter your name and email address below.</p>
             
             <form action="emailList" method="post">
+                
                 <input type="hidden" name="action" value="add">
                 
                 <div class="form-group">

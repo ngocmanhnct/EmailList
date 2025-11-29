@@ -4,45 +4,40 @@ import java.sql.*;
 import murach.business.User;
 
 public class UserDB {
+
+    // 1. URL chuẩn JDBC kết nối tới Render (đã thêm sslmode=require)
+    private static final String DB_URL = "jdbc:postgresql://dpg-d4k09qm3jp1c738gen50-a.oregon-postgres.render.com:5432/ltweb?sslmode=require";
     
-    // Giữ nguyên thông tin kết nối DB của bạn (Render hoặc Local)
-    private static final String DB_URL = "jdbc:postgresql://dpg-d4k09qm3jp1c738gen50-a.oregon-postgres.render.com:5432/murach_email_list?sslmode=require";
+    // 2. Tên đăng nhập
     private static final String USER = "ltweb_user";
+    
+    // 3. Mật khẩu
     private static final String PASS = "VZcuMQTrnePaaCtIsNMr2rzmhiksPp5h";
 
     public static int insert(User user) {
         Connection conn = null;
         PreparedStatement ps = null;
 
-        // --- SỬA QUAN TRỌNG TẠI ĐÂY ---
-        // 1. Tên bảng: UserTest
-        // 2. Tên cột: EmailAddress (thay vì Email)
-        // 3. Thứ tự: FirstName, LastName, EmailAddress (cho giống SQL bạn gửi)
-        String query = "INSERT INTO UserTest (FirstName, LastName, EmailAddress) " +
-                       "VALUES (?, ?, ?)";
+        // LƯU Ý: Tên bảng là "UserTest", cột là "EmailAddress" (theo như bạn cung cấp ở trên)
+        // Nếu database trên Render bạn chưa tạo bảng này thì sẽ lỗi.
+        // Nếu tên bảng trên Render là "users" thì sửa UserTest -> users
+        String query = "INSERT INTO UserTest (FirstName, LastName, EmailAddress) VALUES (?, ?, ?)";
         
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             
             ps = conn.prepareStatement(query);
-            
-            // --- CẬP NHẬT THỨ TỰ DATA CHO KHỚP VỚI CÂU QUERY ---
-            // Dấu ? thứ 1 là FirstName
             ps.setString(1, user.getFirstName());
-            
-            // Dấu ? thứ 2 là LastName
             ps.setString(2, user.getLastName());
-            
-            // Dấu ? thứ 3 là EmailAddress
             ps.setString(3, user.getEmail());
             
             return ps.executeUpdate();
             
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Lỗi Insert: " + e.getMessage());
-            e.printStackTrace(); // In lỗi đầy đủ để dễ sửa
-            return 0;
+            System.out.println("Lỗi kết nối Render: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("LỖI KẾT NỐI DB CHI TIẾT: " + e.getMessage());
         } finally {
             try {
                 if (ps != null) ps.close();
