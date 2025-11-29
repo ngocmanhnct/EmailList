@@ -6,9 +6,9 @@ import murach.business.User;
 public class UserDB {
     
     // Giữ nguyên thông tin kết nối DB của bạn (Render hoặc Local)
-    private static final String DB_URL = "jdbc:postgresql://......?sslmode=require";
-    private static final String USER = "......";
-    private static final String PASS = "......";
+    private static final String DB_URL = "jdbc:postgresql://dpg-d4k09qm3jp1c738gen50-a.oregon-postgres.render.com:5432/murach_email_list?sslmode=require";
+    private static final String USER = "ltweb_user";
+    private static final String PASS = "VZcuMQTrnePaaCtIsNMr2rzmhiksPp5h";
 
     public static int insert(User user) {
         Connection conn = null;
