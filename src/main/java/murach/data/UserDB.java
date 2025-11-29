@@ -17,7 +17,7 @@ public class UserDB {
         PreparedStatement ps = null;
 
         // 3. Sửa tên bảng thành "users" (khớp với Bước 1)
-        String query = "INSERT INTO users (FirstName, LastName, EmailAddress) " +
+        String query = "INSERT INTO UserTest (FirstName, LastName, EmailAddress) " +
                        "VALUES (?, ?, ?)";
         try {
             // Nạp Driver (tùy chọn với JDBC mới, nhưng nên giữ cho chắc)
