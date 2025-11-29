@@ -1,0 +1,61 @@
+/* Web Pages/style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Hoặc #f4f4f4 nếu muốn nền xám nhẹ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    width: 400px;
+    padding: 20px 30px;
+    border: 1px solid #ccc; /* Viền mỏng */
+    border-radius: 5px; /* Bo góc nhẹ */
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1); /* Tạo bóng mờ */
+}
+
+h1 {
+    color: #008080; /* Màu xanh ngọc (Teal) giống hình */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Căn chỉnh label và input thẳng hàng */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 100px; /* Độ rộng cố định cho nhãn để thẳng hàng */
+    font-size: 14px;
+}
+
+input[type="text"], input[type="email"] {
+    flex: 1; /* Input chiếm hết phần còn lại */
+    padding: 3px;
+    border: 1px solid #aaa;
+}
+
+input[type="submit"] {
+    margin-left: 100px; /* Thụt vào bằng độ rộng của label */
+    padding: 3px 10px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #999;
+    color: black;
+    font-size: 12px;
+}
+input[type="submit"]:hover {
+    background-color: #ddd;
+}
